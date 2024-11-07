@@ -29,11 +29,24 @@ public class ScheduleView extends View {
 		System.out.println();
 	}
 
-	public void displayAllAppointments(Schedule schedule, PatientRepository patientRepository){
+	public void displayAllConfirmedAppointments(Schedule schedule, PatientRepository patientRepository){
 		Map<LocalDate, Appointment[]> sm = schedule.getScheduleMap();
 		for (LocalDate key : sm.keySet()){
 			for (Appointment appt : sm.get(key)){
 				if (appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED){
+					System.out.print(key +"\t" + appt.getTime() + ": " + 
+					(patientRepository.getById(appt.getPatientId())).getName() //patient name
+					+ "(" + appt.getPatientId() + ")");
+				}
+			}
+		}
+	}
+
+	public void displayAllPendingAppointments(Schedule schedule, PatientRepository patientRepository){
+		Map<LocalDate, Appointment[]> sm = schedule.getScheduleMap();
+		for (LocalDate key : sm.keySet()){
+			for (Appointment appt : sm.get(key)){
+				if (appt.getAppointmentStatus() == AppointmentStatus.PENDING){
 					System.out.print(key +"\t" + appt.getTime() + ": " + 
 					(patientRepository.getById(appt.getPatientId())).getName() //patient name
 					+ "(" + appt.getPatientId() + ")");

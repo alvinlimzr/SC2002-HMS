@@ -45,7 +45,7 @@ public class DoctorMenuController extends Controller {
                 updatePatientMedicalRecordController.navigate();
                 break;
             case 3: //view personal schedule (all appointments in DB)
-                scheduleView.displayAllAppointments(doctor.getSchedule(), patientRepository);
+                scheduleView.displayAllConfirmedAppointments(doctor.getSchedule(), patientRepository);
                 break;
             case 4: //set availability for appointments
                 SetDoctorAvailabilityController setDoctorAvailabilityController = new SetDoctorAvailabilityController(doctor);
