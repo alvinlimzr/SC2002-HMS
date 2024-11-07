@@ -1,0 +1,73 @@
+package hms.control;
+
+import hms.boundary.InputHandler;
+import hms.boundary.Prompt;
+import hms.boundary.patient.record.MedicalRecordView;
+import hms.boundary.DoctorMenuView;
+import hms.entity.user.Doctor;
+import hms.entity.user.Patient;
+import hms.exceptions.InvalidChoiceFormatException;
+import hms.exceptions.InvalidChoiceValueException;
+
+public class DoctorMenuController extends Controller {
+    private final DoctorMenuView doctorMenuView;
+    private Doctor doctor;
+
+    public DoctorMenuController(Doctor doctor){
+        this.doctor=doctor;
+        this.doctorMenuView=new DoctorMenuView(doctor);
+    }
+
+    @Override
+    public void navigate() {
+        int choice = 0;
+        do{
+            this.doctorMenuView.displayHeader();
+            this.doctorMenuView.displayOptions();
+
+            try{
+                choice = InputHandler.getChoice(1, 9);
+            } catch (InvalidChoiceFormatException | InvalidChoiceValueException e) {
+				// Continue loop if invalid choice
+				choice = -1;
+				continue;
+			}
+
+            switch (choice) {
+            case 1: //view/update patient medical records
+                Prompt.displayPatientIDPrompt();
+                String patientID = InputHandler.getString();
+                MedicalRecordView medicalRecordView = new MedicalRecordView((Patient) LoginController.getUser(patientID, "DOCTOR LOGIN"));
+                medicalRecordView.displayMedicalRecord();
+                break;
+            case 2: //update patient medical records
+
+                break;
+            case 3: //view personal schedule
+
+                break;
+            case 4: //set availability for appointments
+
+                break;
+            case 5: // accept or decline appt requests
+
+                break;
+            case 6: //view upcoming appts
+
+                break;
+            case 7: //record appt outcome
+
+                break;
+            case 8: //change password
+                ChangePasswordController changePasswordController = new ChangePasswordController(doctor);
+                changePasswordController.navigate();
+                break;
+            case 9: //logout
+                System.out.println("Logging out.");
+                break;
+            default:
+            }
+        } while (choice < 9);
+    }
+    
+}
