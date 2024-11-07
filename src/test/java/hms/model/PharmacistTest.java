@@ -24,7 +24,7 @@ class PharmacistTest {
 				BloodType.A_POS, "999", "alice.brown@example.com");
 		Patient patient = new Patient(medicalRecord, "password");
 		Doctor doctor = new Doctor("D001", "password", "John Smith", Gender.MALE, 45);
-		Medicine medicine = new Medicine("Paracetamol");
+		Medicine medicine = new Medicine("Paracetamol", 5);
 		AppointmentOutcomeRecord appointmentOutcomeRecord = new AppointmentOutcomeRecord(LocalDate.of(2024, 11, 2),
 				"General", "Fever");
 		doctor.prescribeMedicine(medicine, appointmentOutcomeRecord);
@@ -39,8 +39,8 @@ class PharmacistTest {
 				BloodType.A_POS, "999", "alice.brown@example.com");
 		Patient patient = new Patient(medicalRecord, "password");
 		Doctor doctor = new Doctor("D001", "password", "John Smith", Gender.MALE, 45);
-		Medicine medicine1 = new Medicine("Paracetamol");
-		Medicine medicine2 = new Medicine("Ibuprofen");
+		Medicine medicine1 = new Medicine("Paracetamol", 5);
+		Medicine medicine2 = new Medicine("Ibuprofen", 5);
 		AppointmentOutcomeRecord appointmentOutcomeRecord = new AppointmentOutcomeRecord(LocalDate.of(2024, 11, 2),
 				"General", "Fever");
 		doctor.prescribeMedicine(medicine1, appointmentOutcomeRecord);
