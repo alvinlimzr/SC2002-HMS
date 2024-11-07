@@ -20,7 +20,7 @@ public class DoctorMenuView extends View {
 
 		System.out.println(options);
 		System.out.println(border);
-		System.out.println(prompt);
+		System.out.print(prompt);
 	}
 
 	public void displayPatientIDPrompt() {

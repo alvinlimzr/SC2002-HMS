@@ -18,7 +18,7 @@ public class PharmacistMenuView extends View {
 
 		System.out.println(options);
 		System.out.println(border);
-		System.out.println(prompt);
+		System.out.print(prompt);
 	}
 
 	@Override
