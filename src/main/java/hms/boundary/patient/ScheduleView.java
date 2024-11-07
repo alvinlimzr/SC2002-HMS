@@ -65,6 +65,15 @@ public class ScheduleView extends View {
 			}
 		}
 	}
+
+	public void displayAppointmentByDate(Schedule schedule, PatientRepository patientRepository, LocalDate date){
+		Appointment[] appointments = (schedule.getScheduleMap()).get(date);
+		for (int i=0; i < appointments.length; i++){
+			System.out.println((i+1) + ": " + appointments[i].getTime() + ": " + 
+			(patientRepository.getById(appointments[i].getPatientId())).getName() //patient name
+			+ "(" + appointments[i].getPatientId() + ")");
+		}
+	}
 	
 	@Override
 	public void displayHeader() {
