@@ -57,7 +57,8 @@ public class DoctorMenuController extends Controller {
                 scheduleView.displayUpcomingAppointments(doctor.getSchedule(), patientRepository);
                 break;
             case 7: //record appt outcome
-
+                CompleteAppointmentController completeAppointmentController = new CompleteAppointmentController(doctor, choosePatient());
+                completeAppointmentController.navigate();
                 break;
             case 8: //change password
                 ChangePasswordController changePasswordController = new ChangePasswordController(doctor);
