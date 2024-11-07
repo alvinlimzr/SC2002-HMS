@@ -6,6 +6,16 @@ public class Prompt {
 		System.out.print("Please enter a date (YYYY-MM-DD): ");
 	}
 
+	public static void displayStartTimePrompt(){
+		System.out.print("Choose a start time.");
+		displayTimePrompt();
+	}
+
+	public static void displayEndTimePrompt(){
+		System.out.print("Choose a end time.");
+		displayTimePrompt();
+	}
+
 	public static void displayTimePrompt() {
 		System.out.println("Note that the time must be in a half hour interval (e.g. 09:00, 09:30, etc).");
 		System.out.print("Please enter a time (HH:MM): ");
