@@ -2,9 +2,14 @@ package hms.boundary.patient;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Map;
 
 import hms.boundary.View;
+import hms.entity.appointment.Appointment;
+import hms.entity.appointment.AppointmentStatus;
+import hms.entity.appointment.Schedule;
 import hms.entity.user.Doctor;
+import hms.repository.PatientRepository;
 
 public class ScheduleView extends View {
 
@@ -24,6 +29,43 @@ public class ScheduleView extends View {
 		System.out.println();
 	}
 
+	public void displayAllAppointments(Schedule schedule, PatientRepository patientRepository){
+		Map<LocalDate, Appointment[]> sm = schedule.getScheduleMap();
+		for (LocalDate key : sm.keySet()){
+			for (Appointment appt : sm.get(key)){
+				if (appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED){
+					System.out.print(key +"\t" + appt.getTime() + ": " + 
+					(patientRepository.getById(appt.getPatientId())).getName() //patient name
+					+ "(" + appt.getPatientId() + ")");
+				}
+			}
+		}
+	}
+
+	public void displayUpcomingAppointments(Schedule schedule, PatientRepository patientRepository) {
+		Map<LocalDate, Appointment[]> sm = schedule.getScheduleMap();
+		LocalDate date = LocalDate.now();
+		LocalTime time = LocalTime.now();
+
+		System.out.println("Today's appointments:");
+		for (Appointment appt : sm.get(date)){
+			if ((appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED) && (appt.getTime().isAfter(time))){
+				System.out.print(appt.getTime() + ": " + 
+					(patientRepository.getById(appt.getPatientId())).getName() //patient name
+					+ "(" + appt.getPatientId() + ")");
+			}
+		}
+
+		System.out.println("\nTomorrow's appointments:");
+		for (Appointment appt : sm.get((date.plusDays(1)))){
+			if (appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED){
+				System.out.print(appt.getTime() + ": " + 
+					(patientRepository.getById(appt.getPatientId())).getName() //patient name
+					+ "(" + appt.getPatientId() + ")");
+			}
+		}
+	}
+	
 	@Override
 	public void displayHeader() {
 		displayBorderedText(WIDTH, "Available Appointment Slots");

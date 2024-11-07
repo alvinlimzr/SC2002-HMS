@@ -1,6 +1,7 @@
 package hms.control;
 
 import hms.boundary.InputHandler;
+import hms.boundary.patient.ScheduleView;
 import hms.boundary.patient.record.MedicalRecordView;
 import hms.boundary.DoctorMenuView;
 import hms.entity.user.Doctor;
@@ -31,6 +32,8 @@ public class DoctorMenuController extends Controller {
 				choice = -1;
 				continue;
 			}
+            
+            ScheduleView scheduleView = new ScheduleView();
 
             switch (choice) {
             case 1: //view patient medical records
@@ -41,8 +44,8 @@ public class DoctorMenuController extends Controller {
                 UpdatePatientMedicalRecordController updatePatientMedicalRecordController = new UpdatePatientMedicalRecordController(choosePatient());
                 updatePatientMedicalRecordController.navigate();
                 break;
-            case 3: //view personal schedule
-
+            case 3: //view personal schedule (all appointments in DB)
+                scheduleView.displayAllAppointments(doctor.getSchedule(), patientRepository);
                 break;
             case 4: //set availability for appointments
 
@@ -50,8 +53,8 @@ public class DoctorMenuController extends Controller {
             case 5: // accept or decline appt requests
 
                 break;
-            case 6: //view upcoming appts
-
+            case 6: //view all appts today & tmr
+                scheduleView.displayUpcomingAppointments(doctor.getSchedule(), patientRepository);
                 break;
             case 7: //record appt outcome
 
