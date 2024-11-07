@@ -1,7 +1,6 @@
 package hms.control;
 
 import hms.boundary.InputHandler;
-import hms.boundary.Prompt;
 import hms.boundary.patient.record.MedicalRecordView;
 import hms.boundary.DoctorMenuView;
 import hms.entity.user.Doctor;
@@ -34,14 +33,11 @@ public class DoctorMenuController extends Controller {
 			}
 
             switch (choice) {
-            case 1: //view/update patient medical records
-                Prompt.displayPatientIDPrompt();
-                String patientID = InputHandler.getString();
-                MedicalRecordView medicalRecordView = new MedicalRecordView((Patient) LoginController.getUser(patientID, "DOCTOR LOGIN"));
+            case 1: //view patient medical records
+                MedicalRecordView medicalRecordView = new MedicalRecordView(choosePatient());
                 medicalRecordView.displayMedicalRecord();
                 break;
             case 2: //update patient medical records
-
                 break;
             case 3: //view personal schedule
 
@@ -70,4 +66,10 @@ public class DoctorMenuController extends Controller {
         } while (choice < 9);
     }
     
+    private Patient choosePatient() {
+        doctorMenuView.displayPatientIDPrompt();
+        String patientID = InputHandler.getString();
+        return (Patient) LoginController.getUser(patientID, "DOCTOR LOGIN");
+    }
+
 }
