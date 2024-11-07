@@ -38,6 +38,8 @@ public class DoctorMenuController extends Controller {
                 medicalRecordView.displayMedicalRecord();
                 break;
             case 2: //update patient medical records
+                UpdatePatientMedicalRecordController updatePatientMedicalRecordController = new UpdatePatientMedicalRecordController(choosePatient());
+                updatePatientMedicalRecordController.navigate();
                 break;
             case 3: //view personal schedule
 
