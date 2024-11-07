@@ -5,7 +5,7 @@ import hms.entity.user.Doctor;
 public class DoctorMenuView extends View {
 	private Doctor doctor;
 
-	protected DoctorMenuView(Doctor doctor) {
+	public DoctorMenuView(Doctor doctor) {
 		this.doctor = doctor;
 	}
 
