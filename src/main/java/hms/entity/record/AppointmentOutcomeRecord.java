@@ -10,7 +10,7 @@ public class AppointmentOutcomeRecord {
 	private final LocalDate date;
 	private final String serviceType;
 	private final List<Medicine> prescribedMedicineList;
-	private final String consultationNotes;
+	private String consultationNotes;
 
 	public AppointmentOutcomeRecord(LocalDate date, String serviceType, String consultationNotes) {
 		this.date = date;
@@ -37,5 +37,9 @@ public class AppointmentOutcomeRecord {
 
 	public String getConsultationNotes() {
 		return this.consultationNotes;
+	}
+
+	public void appendConsultationNotes(String notes) {
+		this.consultationNotes = consultationNotes + "| " + LocalDate.now() + ": " + notes;
 	}
 }
