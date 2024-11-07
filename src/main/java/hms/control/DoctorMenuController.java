@@ -52,7 +52,8 @@ public class DoctorMenuController extends Controller {
                 setDoctorAvailabilityController.navigate();
                 break;
             case 5: // accept or decline appt requests
-
+                PendingRequestController pendingRequestController = new PendingRequestController(doctor);
+                pendingRequestController.navigate();
                 break;
             case 6: //view all appts today & tmr
                 scheduleView.displayUpcomingAppointments(doctor.getSchedule(), patientRepository);
