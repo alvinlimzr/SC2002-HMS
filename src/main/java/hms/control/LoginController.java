@@ -41,6 +41,8 @@ public class LoginController extends Controller {
 				patientMenuController.navigate();
 
 			} else if (user instanceof Doctor) {
+				DoctorMenuController doctorMenuController = new DoctorMenuController((Doctor) user);
+				doctorMenuController.navigate();
 
 			} else if (user instanceof Pharmacist) {
 
@@ -50,7 +52,7 @@ public class LoginController extends Controller {
 		}
 	}
 
-	private User getUser(String id, String password) {
+	public static User getUser(String id, String password) {
 		Map<String, User> userMap = new HashMap<String, User>();
 		userMap.putAll(administratorRepository.getMap());
 		userMap.putAll(doctorRepository.getMap());
