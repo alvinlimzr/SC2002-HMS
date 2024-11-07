@@ -48,7 +48,8 @@ public class DoctorMenuController extends Controller {
                 scheduleView.displayAllAppointments(doctor.getSchedule(), patientRepository);
                 break;
             case 4: //set availability for appointments
-
+                SetDoctorAvailabilityController setDoctorAvailabilityController = new SetDoctorAvailabilityController(doctor);
+                setDoctorAvailabilityController.navigate();
                 break;
             case 5: // accept or decline appt requests
 
