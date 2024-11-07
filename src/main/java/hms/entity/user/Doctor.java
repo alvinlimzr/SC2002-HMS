@@ -56,7 +56,7 @@ public class Doctor extends User {
 		appointment.setAppointmentStatus(AppointmentStatus.CANCELLED);
 	}
 
-	public void completeAppointment(Patient patient, Appointment appointment, String serviceType,
+	public AppointmentOutcomeRecord completeAppointment(Patient patient, Appointment appointment, String serviceType,
 			String consultationNotes) {
 		appointment.setAppointmentStatus(AppointmentStatus.COMPLETED);
 		AppointmentOutcomeRecord appointmentOutcomeRecord = new AppointmentOutcomeRecord(appointment.getDate(),
@@ -66,6 +66,7 @@ public class Doctor extends User {
 		cancelAppointment(appointment);
 		// Add to patient's outcome record
 		patient.addAppointmentOutcomeRecord(appointmentOutcomeRecord);
+		return appointmentOutcomeRecord;
 	}
 
 	public boolean scheduleAppointment(Appointment appointment) {
