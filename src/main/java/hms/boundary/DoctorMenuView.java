@@ -13,7 +13,8 @@ public class DoctorMenuView extends View {
 		String options = "Please select an option:\r\n" + "1. View Patient Medical Records\r\n"
 				+ "2. Update Patient Medical Records\r\n" + "3. View Personal Schedule\r\n"
 				+ "4. Set Availability for Appointments\r\n" + "5. Accept or Decline Appointment Requests\r\n"
-				+ "6. View Upcoming Appointments\r\n" + "7. Record Appointment Outcome\r\n" + "8. Logout";
+				+ "6. View Upcoming Appointments\r\n" + "7. Record Appointment Outcome\r\n"
+				+ "8. Change Password\r\n" + "9. Logout";
 		String border = "=".repeat(WIDTH);
 		String prompt = "Enter choice (1-8):";
 
