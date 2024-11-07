@@ -22,8 +22,4 @@ public class Prompt {
 	public static void displayEmailAddressPrompt() {
 		System.out.print("Enter email address: ");
 	}
-
-	public static void displayPatientIDPrompt() {
-		System.out.print("Enter patient ID: ");
-	}
 }
