@@ -19,7 +19,9 @@ public class AppointmentOutcomeRecordView extends View {
 		if (records.isEmpty()) {
 			System.out.println("No records found.");
 		}
+		
 		for (AppointmentOutcomeRecord appointmentOutcomeRecord : records) {
+			System.out.println("Appointment " + (records.indexOf(appointmentOutcomeRecord)+1) + ":");
 			System.out.println(String.format("Date: %s", appointmentOutcomeRecord.getDate()));
 			System.out.println(String.format("Service Type: %s", appointmentOutcomeRecord.getServiceType()));
 			System.out.println(String.format("Diagnosis: %s", appointmentOutcomeRecord.getConsultationNotes()));
@@ -35,7 +37,7 @@ public class AppointmentOutcomeRecordView extends View {
 		if ((WIDTH - title.length()) % 2 != 0) {
 			rightPadding++;
 		}
-		String format = "| %-" + (WIDTH - 25) + "s | %-" + 18 + "s |\n";
+		String format = "| %-" + (WIDTH - 36) + "s | %-" + 10 + "s | %-" + 16 + "s |\n";
 
 		System.out.println("-".repeat(WIDTH));
 		System.out.println(" ".repeat(leftPadding) + title + " ".repeat(rightPadding));
@@ -45,10 +47,10 @@ public class AppointmentOutcomeRecordView extends View {
 		if (prescribedMedicineList.isEmpty()) {
 			System.out.println("No medicine prescribed.");
 		} else {
-			System.out.printf(format, "Medicine Name", "Status");
+			System.out.printf(format, "Medicine Name", "Quantity", "Status");
 			System.out.println("|" + "-".repeat(WIDTH - 2) + "|");
 			for (Medicine medicine : prescribedMedicineList) {
-				System.out.printf(format, medicine.getName(), medicine.getMedicineStatus());
+				System.out.printf(format, medicine.getName(),medicine.getQuantity(), medicine.getMedicineStatus());
 			}
 		}
 	}
