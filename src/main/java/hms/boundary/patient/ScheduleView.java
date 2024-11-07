@@ -29,7 +29,7 @@ public class ScheduleView extends View {
 		System.out.println();
 	}
 
-	public void displayAllAppointments(Schedule schedule, PatientRepository patientRepository){
+	public void displayAllConfirmedAppointments(Schedule schedule, PatientRepository patientRepository){
 		Map<LocalDate, Appointment[]> sm = schedule.getScheduleMap();
 		for (LocalDate key : sm.keySet()){
 			for (Appointment appt : sm.get(key)){
