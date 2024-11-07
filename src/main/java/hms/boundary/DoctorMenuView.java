@@ -23,6 +23,10 @@ public class DoctorMenuView extends View {
 		System.out.println(prompt);
 	}
 
+	public void displayPatientIDPrompt() {
+		System.out.print("Enter patient ID: ");
+	}
+
 	@Override
 	public void displayHeader() {
 		displayBorderedText(WIDTH, String.format("Welcome, Dr. %s.", doctor.getName()));
