@@ -21,10 +21,10 @@ public class CompleteAppointmentView extends UpdatePatientMedicalRecordView {
     }
 
     public void displayAddPrescriptionNamePrompt() {
-        System.out.print("Enter Medicine to be added:");
+        System.out.print("Enter Medicine to be added: ");
     }
 
     public void displayAddPrescriptionQtyPrompt() {
-        System.out.print("Enter quantity of Medicine to be added:");
+        System.out.print("Enter quantity of Medicine to be added: ");
     }
 }
