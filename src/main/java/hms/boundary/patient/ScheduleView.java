@@ -89,13 +89,15 @@ public class ScheduleView extends View {
 
 	public void displayAppointmentByDate(Schedule schedule, PatientRepository patientRepository, LocalDate date){
 		Appointment[] appointments = (schedule.getScheduleMap()).get(date);
+		System.out.println("Appointments on " + date + ":");
 		for (int i=0; i < appointments.length; i++){
-			if (appointments[i] == null) {
-
+			if (appointments[i] != null) {
+				if (appointments[i].getAppointmentStatus() == AppointmentStatus.CONFIRMED){
+					System.out.println(appointments[i].getTime() + ": " + 
+					(patientRepository.getById(appointments[i].getPatientId())).getName() //patient name
+					+ "(" + appointments[i].getPatientId() + ")");
+				}
 			}
-			System.out.println((i+1) + ": " + appointments[i].getTime() + ": " + 
-			(patientRepository.getById(appointments[i].getPatientId())).getName() //patient name
-			+ "(" + appointments[i].getPatientId() + ")");
 		}
 	}
 	
