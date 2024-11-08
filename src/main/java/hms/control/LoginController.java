@@ -52,7 +52,7 @@ public class LoginController extends Controller {
 		}
 	}
 
-	public static User getUser(String id, String password) {
+	private User getUser(String id, String password) {
 		Map<String, User> userMap = new HashMap<String, User>();
 		userMap.putAll(administratorRepository.getMap());
 		userMap.putAll(doctorRepository.getMap());
