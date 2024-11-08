@@ -16,7 +16,7 @@ public class DoctorMenuView extends View {
 				+ "6. View Upcoming Appointments\r\n" + "7. Record Appointment Outcome\r\n"
 				+ "8. Change Password\r\n" + "9. Logout";
 		String border = "=".repeat(WIDTH);
-		String prompt = "Enter choice (1-8):";
+		String prompt = "Enter choice (1-8): ";
 
 		System.out.println(options);
 		System.out.println(border);
