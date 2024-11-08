@@ -29,14 +29,16 @@ public class ScheduleView extends View {
 		System.out.println();
 	}
 
-	public void displayAllConfirmedAppointments(Schedule schedule, PatientRepository patientRepository){
+	public void displayAllAppointments(Schedule schedule, PatientRepository patientRepository){
 		Map<LocalDate, Appointment[]> sm = schedule.getScheduleMap();
-		for (LocalDate key : sm.keySet()){
-			for (Appointment appt : sm.get(key)){
-				if (appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED){
-					System.out.print(key +"\t" + appt.getTime() + ": " + 
-					(patientRepository.getById(appt.getPatientId())).getName() //patient name
-					+ "(" + appt.getPatientId() + ")");
+		for (Map.Entry<LocalDate, Appointment[]> entry : sm.entrySet()){
+			for (Appointment appt : entry.getValue()){
+				if (appt != null){
+					if (appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED || appt.getAppointmentStatus() == AppointmentStatus.COMPLETED){
+						System.out.println(entry.getKey() +"\t" + appt.getTime() + ": " + 
+						(patientRepository.getById(appt.getPatientId())).getName() //patient name
+						+ "(" + appt.getPatientId() + ")");
+					}
 				}
 			}
 		}
@@ -44,12 +46,14 @@ public class ScheduleView extends View {
 
 	public void displayAllPendingAppointments(Schedule schedule, PatientRepository patientRepository){
 		Map<LocalDate, Appointment[]> sm = schedule.getScheduleMap();
-		for (LocalDate key : sm.keySet()){
-			for (Appointment appt : sm.get(key)){
-				if (appt.getAppointmentStatus() == AppointmentStatus.PENDING){
-					System.out.print(key +"\t" + appt.getTime() + ": " + 
-					(patientRepository.getById(appt.getPatientId())).getName() //patient name
-					+ "(" + appt.getPatientId() + ")");
+		for (Map.Entry<LocalDate, Appointment[]> entry : sm.entrySet()){
+			for (Appointment appt : entry.getValue()){
+				if (appt != null){
+					if (appt.getAppointmentStatus() == AppointmentStatus.PENDING){
+						System.out.print(entry.getKey() +"\t" + appt.getTime() + ": " + 
+						(patientRepository.getById(appt.getPatientId())).getName() //patient name
+						+ "(" + appt.getPatientId() + ")");
+					}
 				}
 			}
 		}
@@ -62,19 +66,23 @@ public class ScheduleView extends View {
 
 		System.out.println("Today's appointments:");
 		for (Appointment appt : sm.get(date)){
-			if ((appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED) && (appt.getTime().isAfter(time))){
-				System.out.print(appt.getTime() + ": " + 
-					(patientRepository.getById(appt.getPatientId())).getName() //patient name
-					+ "(" + appt.getPatientId() + ")");
+			if (appt != null){
+				if ((appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED) && (appt.getTime().isAfter(time))){
+					System.out.println(appt.getTime() + ": " + 
+						(patientRepository.getById(appt.getPatientId())).getName() //patient name
+						+ "(" + appt.getPatientId() + ")");
+				}
 			}
 		}
 
 		System.out.println("\nTomorrow's appointments:");
 		for (Appointment appt : sm.get((date.plusDays(1)))){
-			if (appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED){
-				System.out.print(appt.getTime() + ": " + 
-					(patientRepository.getById(appt.getPatientId())).getName() //patient name
-					+ "(" + appt.getPatientId() + ")");
+			if (appt != null){
+				if (appt.getAppointmentStatus() == AppointmentStatus.CONFIRMED){
+					System.out.println(appt.getTime() + ": " + 
+						(patientRepository.getById(appt.getPatientId())).getName() //patient name
+						+ "(" + appt.getPatientId() + ")");
+				}
 			}
 		}
 	}
@@ -82,6 +90,9 @@ public class ScheduleView extends View {
 	public void displayAppointmentByDate(Schedule schedule, PatientRepository patientRepository, LocalDate date){
 		Appointment[] appointments = (schedule.getScheduleMap()).get(date);
 		for (int i=0; i < appointments.length; i++){
+			if (appointments[i] == null) {
+
+			}
 			System.out.println((i+1) + ": " + appointments[i].getTime() + ": " + 
 			(patientRepository.getById(appointments[i].getPatientId())).getName() //patient name
 			+ "(" + appointments[i].getPatientId() + ")");
