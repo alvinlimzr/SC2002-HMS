@@ -23,12 +23,15 @@ public class PendingRequestView extends View{
                 }
             }
         }
-        System.out.println("No more pending Appointments.");
         return new Appointment(null, null, null, null);
+    }
+
+    public void displayNoPending() {
+        System.out.println("No pending Appointment requests.");
     }
 
     @Override
     public void displayHeader(){
-        
+        displayBorderedText(WIDTH, "Pending Requests");
     }
 }

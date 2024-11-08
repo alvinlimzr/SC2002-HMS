@@ -21,10 +21,13 @@ public class PendingRequestController extends Controller {
     @Override
     public void navigate() {
         int choice;
-        Appointment appointment;
-        do{
-            Schedule schedule = doctor.getSchedule();
-            appointment = pendingRequestView.displayFirstPendingAppointments(schedule, patientRepository);
+        Schedule schedule = doctor.getSchedule();
+        Appointment appointment = pendingRequestView.displayFirstPendingAppointments(schedule, patientRepository);
+        if (appointment.getPatientId() == null) {
+            pendingRequestView.displayNoPending();
+            return;
+        }
+        while (appointment.getPatientId() != null){
             try{
                 choice = InputHandler.getChoice(0, 1);
             } catch (InvalidChoiceFormatException | InvalidChoiceValueException e) {
@@ -39,7 +42,11 @@ public class PendingRequestController extends Controller {
             case 1:
                 appointment.setAppointmentStatus(AppointmentStatus.CONFIRMED);
             default:
+
+            schedule = doctor.getSchedule();
+            appointment = pendingRequestView.displayFirstPendingAppointments(schedule, patientRepository);
             }
-        } while (appointment.getPatientId() != null);
+        }
+        System.out.println("No more pending Appointments.");
     }
 }
