@@ -128,7 +128,7 @@ public class Schedule {
 		Appointment[] timeslots = this.scheduleMap.get(appointment.getDate());
 
 		if (timeslots == null) {
-			Appointment[] appointmentArr = new Appointment[48];
+			Appointment appointmentArr[] = new Appointment[48];
 			appointmentArr[timeslot] = appointment;
 			this.scheduleMap.put(appointment.getDate(), appointmentArr);
 		} else {
