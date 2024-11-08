@@ -1,5 +1,7 @@
 package hms.boundary.patient.appointment;
 
+import java.time.LocalDate;
+
 import hms.boundary.patient.record.UpdatePatientMedicalRecordView;
 
 public class CompleteAppointmentView extends UpdatePatientMedicalRecordView {
@@ -8,8 +10,12 @@ public class CompleteAppointmentView extends UpdatePatientMedicalRecordView {
 		displayBorderedText(WIDTH, "Complete Appointment");
 	}
 
-    public void displayChoice(int size) {
-        System.out.println("Enter choice (1-" + size + "):");
+    public void displayNoAppointments(LocalDate date) {
+        System.out.println("No Appointments on " + date + "\nReturning to main menu.");
+    }
+
+    public void displayAppointmentChoice() {
+        System.out.print("\nEnter Appointment start time: ");
     }
 
     public void displayServiceTypePrompt() {
@@ -18,6 +24,10 @@ public class CompleteAppointmentView extends UpdatePatientMedicalRecordView {
 
     public void displayNotesPrompt() {
         System.out.println("Enter consultation notes:");
+    }
+
+    public void displayPrescriptionChoicePrompt() {
+        System.out.print("Enter numer of prescriptions to give (1-10): ");
     }
 
     public void displayAddPrescriptionNamePrompt() {
