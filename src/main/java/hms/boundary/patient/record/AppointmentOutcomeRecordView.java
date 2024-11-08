@@ -21,7 +21,7 @@ public class AppointmentOutcomeRecordView extends View {
 		}
 		
 		for (AppointmentOutcomeRecord appointmentOutcomeRecord : records) {
-			System.out.println("Appointment " + (records.indexOf(appointmentOutcomeRecord)+1) + ":");
+			System.out.println("\nAppointment " + (records.indexOf(appointmentOutcomeRecord)+1) + ":");
 			System.out.println(String.format("Date: %s", appointmentOutcomeRecord.getDate()));
 			System.out.println(String.format("Service Type: %s", appointmentOutcomeRecord.getServiceType()));
 			System.out.println(String.format("Diagnosis: %s", appointmentOutcomeRecord.getConsultationNotes()));
