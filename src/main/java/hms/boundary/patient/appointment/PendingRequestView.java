@@ -16,7 +16,7 @@ public class PendingRequestView extends View{
             for (Appointment appt : entry.getValue()){
                 if (appt!=null){
                     if (appt.getAppointmentStatus() == AppointmentStatus.PENDING){
-                        System.out.println(entry.getKey() +"\t" + appt.getTime() + ": " + 
+                        System.out.println("\n" + entry.getKey() +"\t" + appt.getTime() + ": " + 
                         (patientRepository.getById(appt.getPatientId())).getName() //patient name
                         + "(" + appt.getPatientId() + ")");
                         System.out.print("Enter 1 to confirm and 0 to cancel: ");
