@@ -77,7 +77,7 @@ public class DoctorMenuController extends Controller {
     private Patient choosePatient() {
         doctorMenuView.displayPatientIDPrompt();
         String patientID = InputHandler.getString();
-        return (Patient) LoginController.getUser(patientID, "DOCTOR LOGIN");
+        return patientRepository.getById(patientID);
     }
 
 }
